@@ -1,31 +1,53 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CoddingArea } from "../CoddingArea/CoddingArea";
 import "./AboutMe.scss";
 
-export const AboutMe: React.FC = () => {
+export const AboutMe = () => {
   const defaultText = "Front-end Developer & Web Architect";
-  const [title, setTitle] = useState<string>("");
+  const [title, setTitle] = useState("");
+  const [write, setWrite] = useState(true);
+
+  const [reserv, setReserv] = useState(false);
 
   useEffect(() => {
-    let currentIndex = 0;
+    let timer;
+    setWrite(true);
 
-    const timer = setInterval(() => {
-      if (currentIndex < defaultText.length) {
-        const nextChar = defaultText.charAt(currentIndex);
-        setTitle((prev) => prev + nextChar);
-        currentIndex++;
+    if (reserv) {
+      if (title.length > 0) {
+        timer = setTimeout(() => {
+          setTitle((prev) => prev.slice(0, -1));
+        }, 150);
       } else {
-        clearInterval(timer);
+        setWrite(false);
+        timer = setTimeout(() => {
+          setReserv(false);
+        }, 20000);
       }
-    }, 150);
+    } else {
+      setWrite(true);
+      if (title.length < defaultText.length) {
+        timer = setTimeout(() => {
+          setTitle(defaultText.slice(0, title.length + 1));
+        }, 150);
+      } else {
+        setWrite(false);
+        timer = setTimeout(() => {
+          setReserv(true);
+        }, 5000);
+      }
+    }
 
-    return () => clearInterval(timer);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [title, reserv, defaultText]);
 
   return (
     <section className="about-me">
       <div className="about-me__header">
-        <h1 className="about-me__title">{title}</h1>
+        <h1 className="about-me__title">
+          {title}
+          {write && <span className="about-me__title--cursor">|</span>}
+        </h1>
 
         <div className="about-me__status">
           <p className="about-me__status--point"></p>
@@ -111,6 +133,37 @@ export const AboutMe: React.FC = () => {
         <div className="about-me__visual">
           <CoddingArea />
         </div>
+
+        <div className="about-me__description">
+          Привіт! Я Влад — 21-річний Frontend / Full-Stack розробник початківець
+          та практикуючий системний адміністратор. Маючи ступінь бакалавра з
+          комп'ютерних наук та навчаючись на магістратурі з «Інженерії
+          програмного забезпечення», я поєдную академічну базу з реальним
+          практичним досвідом. Працюючи системним адміністратором, я щодня
+          взаємодію з інфраструктурою, мережами та серверами. Це дає мені
+          унікальну перевагу у веб-розробці: я розумію проєкт від першого
+          пікселя в браузері до його розгортання, CI/CD та налаштування
+          серверного середовища.
+        </div>
+
+        <ul className="about-me__tech-list">
+          <li className="about-me__tech-list__item">
+            [Front-End] Type-Safe & Pixel-Perfect: Пишу на React & TypeScript,
+            обираючи сувору типізацію та чистий SCSS. Мої інтерфейси не
+            ламаються при масштабуванні, а компоненти легко перевикористовувати.
+          </li>
+          <li className="about-me__tech-list__item">
+            [Infrastructure] Full-System Control: Завдяки досвіду в системному
+            адмініструванні (Linux/Proxmox/Networks), я розумію шлях коду від
+            git push до конфігурації сервера, DNS та налаштування збереження
+            даних.
+          </li>
+          <li className="about-me__tech-list__item">
+            [Automation] Scripting & Optimization: Не люблю рутину, тому
+            автоматизую все, що можна — від парсингу даних та написання
+            Bash/Python скриптів до швидкої збірки та деплою.
+          </li>
+        </ul>
       </div>
     </section>
   );
