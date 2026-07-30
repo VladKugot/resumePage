@@ -6,7 +6,6 @@ export const AboutMe = () => {
   const defaultText = "Front-end Developer & Web Architect";
   const [title, setTitle] = useState("");
   const [write, setWrite] = useState(true);
-
   const [reserv, setReserv] = useState(false);
 
   useEffect(() => {
@@ -41,6 +40,35 @@ export const AboutMe = () => {
     return () => clearTimeout(timer);
   }, [title, reserv, defaultText]);
 
+  useEffect(() => {
+    const animatedElements = document.querySelectorAll(".animate-on-scroll");
+
+    const observerOptions: IntersectionObserverInit = {
+      root: null,
+      rootMargin: "-50px 0px -50px 0px",
+      threshold: 0.1,
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        } else {
+          entry.target.classList.remove("is-visible");
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="about-me">
       <div className="about-me__header">
@@ -61,6 +89,7 @@ export const AboutMe = () => {
           TypeScript та Node.js — від ідеї до деплою.
         </p>
       </div>
+
       <div className="about-me__grid-cont">
         <div className="about-me__content">
           <div className="about-me__actions">
@@ -147,23 +176,32 @@ export const AboutMe = () => {
         </div>
 
         <ul className="about-me__tech-list">
-          <li className="about-me__tech-list__item">
-            [Front-End] Type-Safe & Pixel-Perfect: Пишу на React & TypeScript,
-            обираючи сувору типізацію та чистий SCSS. Мої інтерфейси не
-            ламаються при масштабуванні, а компоненти легко перевикористовувати.
+          <li className="about-me__tech-list__item animate-on-scroll">
+            <span>[Front-End]</span> Type-Safe & Pixel-Perfect: Пишу на React &
+            TypeScript, обираючи сувору типізацію та чистий SCSS. Мої інтерфейси
+            не ламаються при масштабуванні, а компоненти легко
+            перевикористовувати.
           </li>
-          <li className="about-me__tech-list__item">
-            [Infrastructure] Full-System Control: Завдяки досвіду в системному
-            адмініструванні (Linux/Proxmox/Networks), я розумію шлях коду від
-            git push до конфігурації сервера, DNS та налаштування збереження
-            даних.
+          <li className="about-me__tech-list__item animate-on-scroll">
+            <span>[Infrastructure]</span> Full-System Control: Завдяки досвіду в
+            системному адмініструванні (Linux/Proxmox/Networks), я розумію шлях
+            коду від git push до конфігурації сервера, DNS та налаштування
+            збереження даних.
           </li>
-          <li className="about-me__tech-list__item">
-            [Automation] Scripting & Optimization: Не люблю рутину, тому
-            автоматизую все, що можна — від парсингу даних та написання
+          <li className="about-me__tech-list__item animate-on-scroll">
+            <span>[Automation]</span> Scripting & Optimization: Не люблю рутину,
+            тому автоматизую все, що можна — від парсингу даних та написання
             Bash/Python скриптів до швидкої збірки та деплою.
           </li>
         </ul>
+      </div>
+
+      <div className="about-me__visual">
+        <CoddingArea />
+      </div>
+
+      <div className="about-me__visual">
+        <CoddingArea />
       </div>
     </section>
   );
