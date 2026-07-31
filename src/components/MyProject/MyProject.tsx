@@ -1,7 +1,39 @@
+import { useEffect } from "react";
 import { SitesPreview } from "../SitesPreview";
 import "./MyProject.scss";
 
+
 export const MyProject = () => {
+
+useEffect(() => {
+    const animatedElements = document.querySelectorAll(".my-project__card");
+
+    const observerOptions: IntersectionObserverInit = {
+      root: null,
+      rootMargin: "-50px 0px -50px 0px",
+      threshold: 0.1,
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        } else {
+          entry.target.classList.remove("is-visible");
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="my-project">
       <h1 className="my-project__title">My project</h1>

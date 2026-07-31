@@ -3,10 +3,10 @@
   flex-direction: column;
   gap: 40px;
 
+
   &__title {
     margin: 0;
     font-size: 45px;
-    color: var(--accent-cyan);
     text-align: center;
     color: transparent;
     -webkit-text-stroke: 1px var(--accent-cyan);
@@ -19,12 +19,6 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    align-items: left;
-
-    > *:nth-child(even) {
-      align-self: flex-end;
-      flex-direction: row-reverse;
-    }
   }
 
   &__card {
@@ -33,48 +27,68 @@
     gap: 80px;
     align-items: center;
     user-select: none;
+
+    opacity: 0;
+    will-change: transform, opacity;
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:nth-child(odd) {
+      transform: translateX(-200px);
+    }
+
+    &:nth-child(even) {
+      transform: translateX(200px);
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   &__site {
     position: relative;
     border-radius: 16px;
-    transition: 1.2s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.3),
       var(--shadow-glow);
 
     &:hover {
-      transform: scale(1.2);
+      transform: scale(1.08);
       z-index: 10;
     }
   }
 
   &__link {
-    padding: 16px auto;
     box-sizing: border-box;
     border-radius: 10px;
     width: 200px;
     height: 50px;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: var(--bg-card);
     border: 2px solid var(--border-color);
     cursor: pointer;
-
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.3),
       var(--shadow-glow);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
       border: 2px solid var(--accent-cyan);
       box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.3),
         var(--shadow-glow-cyan);
-        animation: pulse 2s infinite ease-in-out;
+      animation: pulse 2s infinite ease-in-out;
     }
 
     a {
-      align-self: center;
       text-decoration: none;
       color: #fff;
       font-size: 16px;
@@ -85,7 +99,7 @@
 }
 
 .preview-container {
-  transition: 1.2s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.3),
     var(--shadow-glow);
