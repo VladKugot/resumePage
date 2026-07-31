@@ -1,22 +1,22 @@
-import './App.css'
-import { AboutMe } from './components/AboutMe/AboutMe'
-import { Header } from './components/Header/Header'
+import "./App.scss";
+import { AboutMe } from "./components/AboutMe/AboutMe";
+import { Header } from "./components/Header/Header";
+import { MyProject } from "./components/MyProject/MyProject";
 
 function App() {
-
   return (
     <>
-    <Header/>
+      <Header />
 
-    <main>
-    <AboutMe/>
-    </main>
+      <main>
+        <AboutMe />
 
-    <footer>
+        <MyProject />
+      </main>
 
-    </footer>
+      <footer></footer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

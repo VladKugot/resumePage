@@ -1,0 +1,116 @@
+.my-project {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  &__title {
+    margin: 0;
+    font-size: 45px;
+    color: var(--accent-cyan);
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    letter-spacing: 0.22em;
+    transition: text-shadow 0.25s ease;
+    user-select: none;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: left;
+
+    > *:nth-child(even) {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    align-items: center;
+    user-select: none;
+  }
+
+  &__site {
+    position: relative;
+    border-radius: 16px;
+    transition: 1.2s;
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      var(--shadow-glow);
+
+    &:hover {
+      transform: scale(1.2);
+      z-index: 10;
+    }
+  }
+
+  &__link {
+    padding: 16px auto;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      var(--shadow-glow);
+
+    &:hover {
+      border: 2px solid var(--accent-cyan);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        var(--shadow-glow-cyan);
+        animation: pulse 2s infinite ease-in-out;
+    }
+
+    a {
+      align-self: center;
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      font-family: var(--font-logo);
+      letter-spacing: 2px;
+    }
+  }
+}
+
+.preview-container {
+  transition: 1.2s;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    var(--shadow-glow);
+  border-radius: 16px;
+  border: 3px solid var(--border-color);
+  box-sizing: border-box;
+
+  &:hover {
+    border: 3px solid var(--accent-cyan);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(39, 201, 63, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(39, 201, 63, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(39, 201, 63, 0);
+  }
+}

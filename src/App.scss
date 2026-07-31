@@ -1,0 +1,19 @@
+@import "./components/__mixins.scss";
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+}
+
+main {
+
+    @include content-padding();
+    
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+
+  }
+
+  

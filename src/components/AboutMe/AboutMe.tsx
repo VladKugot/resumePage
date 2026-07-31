@@ -195,14 +195,6 @@ export const AboutMe = () => {
           </li>
         </ul>
       </div>
-
-      <div className="about-me__visual">
-        <CoddingArea />
-      </div>
-
-      <div className="about-me__visual">
-        <CoddingArea />
-      </div>
     </section>
   );
 };

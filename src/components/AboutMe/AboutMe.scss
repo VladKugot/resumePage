@@ -138,11 +138,11 @@
     padding: 20px;
     font-size: 16px;
     line-height: 22px;
-    color: var(--text-muted);
     font-family: var(--font-body);
     user-select: none;
     border-radius: 16px;
     margin-top: 20px;
+    color: var(--accent-cyan);
 
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.3),
@@ -181,8 +181,8 @@
       }
 
       opacity: 0;
-      transition: 
-        opacity 0.8s ease-out, 
+      transition:
+        opacity 0.8s ease-out,
         transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
         color 0.9s ease,
         box-shadow 0.5s ease;
@@ -331,4 +331,3 @@
     white-space: nowrap;
   }
 }
-
