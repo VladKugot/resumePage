@@ -1,18 +1,27 @@
+@import "../_mixins";
+
 .my-project {
   display: flex;
   flex-direction: column;
   gap: 40px;
 
-
   &__title {
     margin: 0;
-    font-size: 45px;
+    font-size: 30px;
     text-align: center;
     color: transparent;
     -webkit-text-stroke: 1px var(--accent-cyan);
     letter-spacing: 0.22em;
     transition: text-shadow 0.25s ease;
     user-select: none;
+
+    @include respond-to("tablet") {
+      font-size: 40px;
+    }
+
+    @include respond-to("desktop") {
+      font-size: 45px;
+    }
   }
 
   &__list {
@@ -23,10 +32,21 @@
 
   &__card {
     display: flex;
-    flex-direction: row;
-    gap: 80px;
+    flex-direction: column;
+    gap: 40px;
     align-items: center;
     user-select: none;
+
+    @include respond-to("tablet") {
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    @include respond-to("desktop") {
+      flex-direction: row;
+      align-items: center;
+      gap: 80px;
+    }
 
     opacity: 0;
     will-change: transform, opacity;
@@ -40,8 +60,16 @@
 
     &:nth-child(even) {
       transform: translateX(200px);
-      align-self: flex-end;
-      flex-direction: row-reverse;
+
+      @include respond-to("tablet") {
+        align-items: flex-end;
+      }
+
+      @include respond-to("desktop") {
+        align-items: center;
+        align-self: flex-end;
+        flex-direction: row-reverse;
+      }
     }
 
     &.is-visible {
@@ -53,7 +81,9 @@
   &__site {
     position: relative;
     border-radius: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.3),
       var(--shadow-glow);
@@ -78,7 +108,10 @@
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.3),
       var(--shadow-glow);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+    
 
     &:hover {
       border: 2px solid var(--accent-cyan);
@@ -99,7 +132,9 @@
 }
 
 .preview-container {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.3),
     var(--shadow-glow);

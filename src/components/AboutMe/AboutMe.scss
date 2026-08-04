@@ -14,38 +14,45 @@
   }
 
   &__content {
-    grid-column: span 2;
+    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
     gap: 25px;
+    padding: 10px;
 
-    padding: 40px;
+    @include respond-to("tablet") {
+      padding: 20px;
+      grid-column: span 2;
+    }
 
     @include respond-to("desktop") {
-      grid-column: span 6;
+      padding: 40px;
+      grid-column: span 7;
     }
   }
 
   &__visual {
-    grid-column: span 2;
+    grid-column: 1 / -1;
+
+    min-width: 0;
 
     @include respond-to("tablet") {
       grid-column: span 3;
     }
 
     @include respond-to("desktop") {
-      grid-column: span 9;
+      grid-column: span 8;
     }
   }
 
   &__title {
     color: transparent;
     -webkit-text-stroke: 1px var(--accent-cyan);
-    font-size: 75px;
+    font-size: 40px;
     letter-spacing: -0.02em;
     user-select: none;
     font-family: var(--font-code);
-    min-height: 196px;
+    min-height: 160px;
     margin: 0;
 
     text-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
@@ -53,13 +60,31 @@
     &--cursor {
       -webkit-text-stroke: 1px var(--accent-green);
     }
+
+    @include respond-to("tablet") {
+      font-size: 44px;
+      min-height: 120px;
+    }
+
+    @include respond-to("desktop") {
+      font-size: 75px;
+      min-height: 196px;
+    }
   }
 
   &__status {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-top: 50px;
+    margin-top: 15px;
+
+    @include respond-to("tablet") {
+      margin-top: 25px;
+    }
+
+    @include respond-to("desktop") {
+      margin-top: 50px;
+    }
 
     &--point {
       width: 12px;
@@ -74,13 +99,21 @@
 
     &--text {
       margin: 0;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 500;
       font-family: var(--font-heading);
       line-height: 1;
       color: var(--accent-green, #27c93f);
       letter-spacing: 0.02em;
       user-select: none;
+
+      @include respond-to("tablet") {
+        font-size: 18px;
+      }
+
+      @include respond-to("desktop") {
+        font-size: 20px;
+      }
 
       @keyframes pulse {
         0% {
@@ -103,12 +136,16 @@
 
   &__text {
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: 15px;
     padding: 0;
     margin: 0;
     max-width: 65%;
     font-style: italic;
     user-select: none;
+
+    @include respond-to("desktop") {
+      font-size: 18px;
+    }
   }
 
   &__actions {
@@ -121,28 +158,32 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-    @include respond-to("tablet") {
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
   }
 
   &__description {
-    grid-column: 1 / 9;
-    padding: 20px;
+    grid-column: 1 / -1;
+    padding: 20px 15px;
     background-color: rgba(11, 15, 25, 0.7);
     border: 1px solid var(--border-color);
     letter-spacing: 5%;
-    padding: 20px;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 18px;
     font-family: var(--font-body);
     user-select: none;
     border-radius: 16px;
     margin-top: 20px;
     color: var(--accent-cyan);
+
+    @include respond-to("tablet") {
+      padding: 15px;
+    }
+
+    @include respond-to("desktop") {
+      grid-column: span 7;
+      padding: 20px;
+      font-size: 16px;
+      line-height: 22px;
+    }
 
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.3),
@@ -157,17 +198,31 @@
     grid-template-columns: 1fr 1fr 1fr;
     padding: 0;
     margin: 0;
-    padding: 40px;
+
+    @include respond-to("desktop") {
+      padding: 40px;
+    }
 
     &__item {
-      font-size: 16px;
+      font-size: 14px;
       padding: 15px;
-      margin-top: 40px;
+      margin-top: 20px;
       letter-spacing: 2%;
       color: var(--accent-cyan);
       font-family: var(--font-body);
       user-select: none;
       border-radius: 16px;
+
+      @include respond-to("tablet") {
+        padding: 20px;
+        margin-top: 25px;
+      }
+
+      @include respond-to("desktop") {
+        font-size: 16px;
+        padding: 15px;
+        margin-top: 40px;
+      }
 
       box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.3),
@@ -188,14 +243,18 @@
         box-shadow 0.5s ease;
       will-change: transform, opacity;
 
-      &:nth-child(odd) {
-        grid-column: span 2;
-        transform: translateX(-200px);
-      }
+      grid-column: 1 / -1;
 
-      &:nth-child(even) {
-        grid-column: 2 / span 2;
-        transform: translateX(200px);
+      @include respond-to("tablet") {
+        &:nth-child(odd) {
+          grid-column: span 2;
+          transform: translateX(-200px);
+        }
+
+        &:nth-child(even) {
+          grid-column: 2 / span 2;
+          transform: translateX(200px);
+        }
       }
 
       &.is-visible {
@@ -221,9 +280,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 28px;
+  padding: 14px 12px;
   font-family: var(--font-heading);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   color: #0b0f19;
@@ -234,6 +293,12 @@
   box-shadow: var(--shadow-glow);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  justify-content: center;
+
+  @include respond-to("desktop") {
+    padding: 12px 28px;
+    font-size: 16px;
+  }
 
   &:hover {
     background-color: #7dd3fc;
@@ -272,6 +337,18 @@
   backdrop-filter: blur(8px);
   user-select: none;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @include respond-to("desktop") {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @include respond-to("tablet") {
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
 
   &:hover {
     transform: translateY(-2px);
