@@ -1,5 +1,9 @@
 @import "./components/__mixins.scss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background-color: var(--bg-primary);
@@ -7,13 +11,9 @@ body {
 }
 
 main {
+  @include content-padding();
 
-    @include content-padding();
-    
-    display: flex;
-    flex-direction: column;
-    gap: 70px;
-
-  }
-
-  
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}

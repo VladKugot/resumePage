@@ -3,7 +3,7 @@ import "./Footer.scss";
 
 export const Footer = () => {
   return (
-    <footer className="footer">
+    <footer id="contact" className="footer">
       <ul className="footer__list">
         <li className="footer__item">
           <a href="tel:+380636629391" className="footer__link">

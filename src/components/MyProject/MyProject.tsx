@@ -34,7 +34,7 @@ export const MyProject = () => {
 
   return (
     <div className="my-project">
-      <h1 className="my-project__title">My project</h1>
+      <h1 id="projects" className="my-project__title" >My project</h1>
 
       <div className="my-project__list">
         <div className="my-project__card">

@@ -8,6 +8,11 @@ export const AboutMe = () => {
   const [write, setWrite] = useState(true);
   const [reserv, setReserv] = useState(false);
 
+  const handleBtnClickProject = () => {
+    const titleElement = document.getElementById("my-project-title");
+    console.log(titleElement?.textContent);
+  };
+
   useEffect(() => {
     let timer;
     setWrite(true);
@@ -93,7 +98,7 @@ export const AboutMe = () => {
       <div className="about-me__grid-cont">
         <div className="about-me__content">
           <div className="about-me__actions">
-            <a href="#projects" className="btn btn--primary">
+            <a href="#projects" className="btn btn--primary" onClick={handleBtnClickProject}>
               Переглянути проєкти
             </a>
             <a href="#contact" className="btn btn--secondary">
