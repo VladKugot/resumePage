@@ -2,10 +2,8 @@ import { useEffect } from "react";
 import { SitesPreview } from "../SitesPreview";
 import "./MyProject.scss";
 
-
 export const MyProject = () => {
-
-useEffect(() => {
+  useEffect(() => {
     const animatedElements = document.querySelectorAll(".my-project__card");
 
     const observerOptions: IntersectionObserverInit = {
